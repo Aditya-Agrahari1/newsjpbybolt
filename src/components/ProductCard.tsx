@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Minus } from 'lucide-react';
+import { Plus, Minus, Package2, Ruler } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../contexts/CartContext';
 import toast from 'react-hot-toast';
@@ -27,46 +27,56 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, categoryName }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="p-6">
-        <div className="mb-2">
-          <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-medium">
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
+      <div className="p-8">
+        <div className="mb-4">
+          <span className="inline-block bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 text-sm px-4 py-2 rounded-full font-semibold">
             {categoryName}
           </span>
         </div>
         
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">{product.name}</h3>
+        <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">{product.name}</h3>
         
-        <div className="space-y-1 text-sm text-gray-600 mb-4">
-          <p><span className="font-medium">SKU:</span> {product.sku}</p>
-          <p><span className="font-medium">Size:</span> {product.size}</p>
+        <div className="space-y-3 mb-6">
+          <div className="flex items-center space-x-3 text-gray-600">
+            <Package2 className="w-5 h-5 text-blue-600" />
+            <span className="text-sm">
+              <span className="font-semibold text-gray-800">SKU:</span> {product.sku}
+            </span>
+          </div>
+          <div className="flex items-center space-x-3 text-gray-600">
+            <Ruler className="w-5 h-5 text-blue-600" />
+            <span className="text-sm">
+              <span className="font-semibold text-gray-800">Size:</span> {product.size}
+            </span>
+          </div>
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
+        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+          <div className="flex items-center space-x-4 bg-gray-50 rounded-xl p-2">
             <button
               onClick={() => handleQuantityChange(-1)}
-              className="p-1 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+              className="p-2 rounded-lg bg-white hover:bg-gray-100 transition-colors shadow-sm border border-gray-200"
               disabled={quantity <= 1}
             >
-              <Minus className="w-4 h-4" />
+              <Minus className="w-4 h-4 text-gray-600" />
             </button>
             
-            <span className="font-medium text-lg min-w-[2rem] text-center">
+            <span className="font-bold text-xl min-w-[3rem] text-center text-gray-900">
               {quantity}
             </span>
             
             <button
               onClick={() => handleQuantityChange(1)}
-              className="p-1 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+              className="p-2 rounded-lg bg-white hover:bg-gray-100 transition-colors shadow-sm border border-gray-200"
             >
-              <Plus className="w-4 h-4" />
+              <Plus className="w-4 h-4 text-gray-600" />
             </button>
           </div>
 
           <button
             onClick={handleAddToCart}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             Add to Cart
           </button>

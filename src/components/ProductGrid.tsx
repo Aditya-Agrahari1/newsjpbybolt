@@ -63,16 +63,24 @@ const ProductGrid: React.FC<ProductGridProps> = ({ selectedCategory }) => {
 
   if (products.length === 0) {
     return (
-      <div className="text-center py-12">
-        <p className="text-gray-500 text-lg">No products found in this category.</p>
+      <div className="bg-gradient-to-br from-gray-50 via-white to-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center py-16">
+            <div className="bg-gray-100 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
+              <Package2 className="w-12 h-12 text-gray-400" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">No Products Found</h3>
+            <p className="text-gray-500 text-lg">No products found in this category. Please try another category.</p>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="bg-gray-50 py-12">
+    <div className="bg-gradient-to-br from-gray-50 via-white to-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {products.map((product) => (
             <ProductCard
               key={product.id}
