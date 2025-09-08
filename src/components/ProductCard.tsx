@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Minus, Package2, Ruler } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../contexts/CartContext';
 import toast from 'react-hot-toast';
@@ -27,60 +27,59 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, categoryName }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
-      <div className="p-8">
+    <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100 overflow-hidden">
+      <div className="p-6">
+        {/* Category Tag */}
         <div className="mb-4">
-          <span className="inline-block bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 text-sm px-4 py-2 rounded-full font-semibold">
+          <span className="inline-block bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide">
             {categoryName}
           </span>
         </div>
         
-        <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">{product.name}</h3>
+        {/* Product Name */}
+        <h3 className="text-lg font-bold text-gray-900 mb-4">{product.name}</h3>
         
-        <div className="space-y-3 mb-6">
-          <div className="flex items-center space-x-3 text-gray-600">
-            <Package2 className="w-5 h-5 text-blue-600" />
-            <span className="text-sm">
-              <span className="font-semibold text-gray-800">SKU:</span> {product.sku}
-            </span>
+        {/* Product Details */}
+        <div className="space-y-2 mb-6">
+          <div className="text-sm text-gray-600">
+            <span className="font-medium text-gray-900">SKU:</span> {product.sku}
           </div>
-          <div className="flex items-center space-x-3 text-gray-600">
-            <Ruler className="w-5 h-5 text-blue-600" />
-            <span className="text-sm">
-              <span className="font-semibold text-gray-800">Size:</span> {product.size}
-            </span>
+          <div className="text-sm text-gray-600">
+            <span className="font-medium text-gray-900">Size:</span> {product.size}
           </div>
         </div>
 
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-          <div className="flex items-center space-x-4 bg-gray-50 rounded-xl p-2">
+        {/* Quantity Selector */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center border border-gray-300 rounded-lg">
             <button
               onClick={() => handleQuantityChange(-1)}
-              className="p-2 rounded-lg bg-white hover:bg-gray-100 transition-colors shadow-sm border border-gray-200"
+              className="p-2 hover:bg-gray-50 transition-colors"
               disabled={quantity <= 1}
             >
               <Minus className="w-4 h-4 text-gray-600" />
             </button>
             
-            <span className="font-bold text-xl min-w-[3rem] text-center text-gray-900">
+            <span className="px-4 py-2 font-medium text-gray-900 min-w-[3rem] text-center">
               {quantity}
             </span>
             
             <button
               onClick={() => handleQuantityChange(1)}
-              className="p-2 rounded-lg bg-white hover:bg-gray-100 transition-colors shadow-sm border border-gray-200"
+              className="p-2 hover:bg-gray-50 transition-colors"
             >
               <Plus className="w-4 h-4 text-gray-600" />
             </button>
           </div>
-
-          <button
-            onClick={handleAddToCart}
-            className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
-          >
-            Add to Cart
-          </button>
         </div>
+
+        {/* Add Button */}
+        <button
+          onClick={handleAddToCart}
+          className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+        >
+          Add
+        </button>
       </div>
     </div>
   );
